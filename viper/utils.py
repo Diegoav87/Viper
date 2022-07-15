@@ -1,5 +1,6 @@
 import os
 import pygame
+import functools
 
 
 def get_folder_names(path):
@@ -7,7 +8,7 @@ def get_folder_names(path):
         return dirs
 
 
-def import_folder(path):
+def import_frames(path):
     frames = []
 
     for _, __, files in os.walk(path):
@@ -17,6 +18,30 @@ def import_folder(path):
             frames.append(image_surf)
 
     return frames
+
+
+def import_folder(path):
+    images = []
+
+    for _, __, files in os.walk(path):
+        for file in sorted(files, key=lambda file: int(file.split('_')[0])):
+            properties = file.split('_')
+            id = properties[0]
+            offset = (int(properties[1]), int(properties[2]))
+            size = (int(properties[3]), int(properties[4]))
+            full_path = path + '/' + file
+            image_surf = pygame.image.load(full_path).convert_alpha()
+
+            image = {
+                'id': id,
+                'offset': offset,
+                'size': size,
+                'surface': image_surf
+            }
+
+            images.append(image)
+
+    return images
 
 
 def slice_spritesheet(path, tile_size_x, tile_size_y):

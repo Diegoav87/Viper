@@ -11,9 +11,10 @@ class SpriteRenderer:
         self.position = None
         self.box_collider = None
 
-    def draw(self, screen, offset, show_colliders):
+    def draw_collider(self, screen, offset):
+        pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(self.box_collider.rect.x - offset.x,
+                         self.box_collider.rect.y - offset.y, self.box_collider.rect.width, self.box_collider.rect.height), 1)
+
+    def draw(self, screen, offset):
         offset_rect = self.position.rect.topleft - offset
         screen.blit(self.image, offset_rect)
-        if show_colliders and self.box_collider is not None:
-            pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(self.box_collider.rect.x - offset.x,
-                             self.box_collider.rect.y - offset.y, self.box_collider.rect.width, self.box_collider.rect.height), 1)

@@ -6,35 +6,35 @@ class PhysicsController:
         self.direction = pygame.math.Vector2(0, 0)
         self.speed = speed
 
-    def move(self, entity):
-        if entity.intention.move_right:
-            self.direction.x = 1
-            self.direction.y = 0
-            entity.animator.state = 'right'
-        elif entity.intention.move_left:
-            self.direction.x = -1
-            self.direction.y = 0
-            entity.animator.state = 'left'
-        elif entity.intention.move_up:
-            self.direction.x = 0
-            self.direction.y = -1
-            entity.animator.state = 'up'
-        elif entity.intention.move_down:
-            self.direction.x = 0
-            self.direction.y = 1
-            entity.animator.state = 'down'
-        else:
-            self.direction.y = 0
-            self.direction.x = 0
+    # def move(self, entity):
+    #     if entity.intention.move_right:
+    #         self.direction.x = 1
+    #         self.direction.y = 0
+    #         entity.animator.state = 'right'
+    #     elif entity.intention.move_left:
+    #         self.direction.x = -1
+    #         self.direction.y = 0
+    #         entity.animator.state = 'left'
+    #     elif entity.intention.move_up:
+    #         self.direction.x = 0
+    #         self.direction.y = -1
+    #         entity.animator.state = 'up'
+    #     elif entity.intention.move_down:
+    #         self.direction.x = 0
+    #         self.direction.y = 1
+    #         entity.animator.state = 'down'
+    #     else:
+    #         self.direction.y = 0
+    #         self.direction.x = 0
 
-            if not "idle" in entity.animator.state:
-                entity.animator.state += '_idle'
+    #         if not "idle" in entity.animator.state:
+    #             entity.animator.state += '_idle'
 
-        entity.position.rect.x += self.direction.x * self.speed
-        entity.position.rect.y += self.direction.y * self.speed
+    #     entity.position.rect.x += self.direction.x * self.speed
+    #     entity.position.rect.y += self.direction.y * self.speed
 
-        if entity.box_collider is not None:
-            entity.box_collider.set_rect()
+    #     if entity.box_collider is not None:
+    #         entity.box_collider.set_rect()
 
     def check_collision(self, entity, obstacles):
         for obstacle in obstacles:
@@ -53,5 +53,4 @@ class PhysicsController:
                     entity.box_collider.reset_position()
 
     def update(self, entity, obstacles):
-        self.move(entity)
         self.check_collision(entity, obstacles)
