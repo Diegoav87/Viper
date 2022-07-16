@@ -18,7 +18,7 @@ class Layer:
             background_offset = self.background_rect.topleft - offset
             screen.blit(self.background, background_offset)
 
-        for sprite in sorted(self.sprites, key=lambda sprite: sprite.position.rect.centery):
+        for sprite in sorted(self.sprites, key=lambda sprite: sprite.transform.rect.centery):
             if show_colliders and sprite.box_collider is not None:
                 sprite.draw_collider(screen, offset)
 

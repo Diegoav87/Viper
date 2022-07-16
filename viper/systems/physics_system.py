@@ -3,7 +3,7 @@ from .system import System
 
 class PhysicsSystem(System):
     def check(self, entity):
-        return entity.physics_controller is not None and entity.position is not None
+        return entity.physics_controller is not None and entity.transform is not None
 
     def update(self, entities):
         obstacles = []

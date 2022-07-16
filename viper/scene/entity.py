@@ -1,7 +1,7 @@
 class Entity:
     def __init__(self):
         self.tag = None
-        self.position = None
+        self.transform = None
         self.animator = None
         self.camera = None
         self.physics_controller = None

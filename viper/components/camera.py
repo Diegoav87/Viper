@@ -12,9 +12,9 @@ class Camera:
 
     def draw(self, layers):
         if self.entity_to_track is not None:
-            self.offset.x = self.entity_to_track.position.rect.centerx - \
+            self.offset.x = self.entity_to_track.transform.rect.centerx - \
                 self.screen.get_size()[0] // 2
-            self.offset.y = self.entity_to_track.position.rect.centery - \
+            self.offset.y = self.entity_to_track.transform.rect.centery - \
                 self.screen.get_size()[1] // 2
 
         for layer in sorted(layers, key=lambda layer: layer.order):
